@@ -1,0 +1,11 @@
+# Some logs
+logs/
+
+# Database
+mariadb/
+
+# Secrets
+.env
+
+# WordPress
+wordpress/ 
