@@ -1,9 +1,65 @@
 services:
+  node-exporter:
+    image: prom/node-exporter:v1.11.1
+    container_name: node-exporter
+    restart: unless-stopped
+    ports:
+      - "9100:9100"
+    command:
+      - '--path.rootfs=/host'
+    volumes:
+      - '/:/host:ro,rslave'
+    networks:
+      - lemp
+
+  cadvisor:
+    image: google/cadvisor:latest 
+    container_name: cadvisor
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:ro
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+    networks:
+      - lemp
+
+  prometheus:
+    image: prom/prometheus:v3.12.0
+    container_name: prometheus
+    restart: unless-stopped
+    ports:
+      - "9090:9090"
+    volumes: 
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./prometheus/data:/prometheus
+    command:
+      - --config.file=/etc/prometheus/prometheus.yml
+      - --storage.tsdb.path=/prometheus
+      - --web.enable-lifecycle
+    networks: 
+      - lemp
+
+  grafana:
+    image: grafana/grafana:13.0.2
+    container_name: grafana
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment: 
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    networks:
+      - lemp
+    
   nginx:
     image: nginx:latest
     container_name: nginx
+    restart: unless-stopped
     ports:
-      - "8080:80"
+      - "80:80"
     volumes:
       - ./wordpress:/var/www/html
       - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
@@ -15,6 +71,7 @@ services:
   php:
     build: ./php
     container_name: php
+    restart: unless-stopped
     volumes: 
       - ./wordpress:/var/www/html
     networks:
@@ -23,7 +80,7 @@ services:
   db:
     image: mariadb:latest
     container_name: mariadb
-    restart: always 
+    restart: unless-stopped 
     environment: 
       MYSQL_DATABASE: ${MYSQL_DATABASE}
       MYSQL_USER: ${MYSQL_USER}
