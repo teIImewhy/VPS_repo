@@ -8,4 +8,10 @@ mariadb/
 .env
 
 # WordPress
-wordpress/ 
+wordpress/
+
+# Stash
+stash/
+
+# Observability
+prometheus/data/
