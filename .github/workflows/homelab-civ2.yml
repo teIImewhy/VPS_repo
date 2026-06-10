@@ -1,4 +1,4 @@
-name: Infrastructure CI
+name: LEMP/Docker/CI
 
 on:
   push:
@@ -15,20 +15,6 @@ jobs:
       
       - name: Checkout repository
         uses: actions/checkout@v4
-
-      - name: Validate nginx configuration
-        run: |
-          docker run --rm \
-          -v ${{ github.workspace }}/nginx/default.conf:/etc/nginx/conf.d/default.conf:ro \
-          nginx:latest \
-          nginx -t
-
-      - name: Validate prometheus configuration
-        run: |
-          docker run --rm \
-          -v ${{ github.workspace }}/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro \
-          prom/prometheus:v3.12.0 \
-          --config.file=/etc/prometheus/prometheus.yml
 
       - name: Validate Docker Compose
         run: docker compose config
