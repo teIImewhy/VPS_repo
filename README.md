@@ -141,7 +141,7 @@ docker compose build
 - [ ] Add automated MariaDB backups
 - [ ] Add integration tests to GitHub Actions
 - [ ] Deploy stack on a VPS
-- [ ] Implement HTTPS with Let's Encrypt
+- [ ] Add Prometheus alerting
 - [ ] Add Terraform infrastructure provisioning
 - [ ] Add Ansible configuration management
 - [ ] Migrate services to Kubernetes
