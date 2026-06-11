@@ -1,6 +1,19 @@
 # LEMP stack with Monitoring
 A Docker Compose based LEMP environment with monitoring and observability components.
 
+## Table of Contents
+- [Overview]
+- [Repository Structure]
+- [Requirements]
+- [Environment Variables]
+- [Notes]
+- [WordPress Files]
+- [Running the Stack]
+- [Port Mapping]
+- [Monitoring]
+- [CI Pipeline]
+- [Future Improvements]
+
 ## Overview
 This project provides a containerized LEMP stack consisting of:
 - Nginx
