@@ -2,17 +2,16 @@
 A Docker Compose based LEMP environment with monitoring and observability components.
 
 ## Table of Contents
-- [Overview]
-- [Repository Structure]
-- [Requirements]
-- [Environment Variables]
-- [Notes]
-- [WordPress Files]
-- [Running the Stack]
-- [Port Mapping]
-- [Monitoring]
-- [CI Pipeline]
-- [Future Improvements]
+- [Overview](#overview)
+- [Repository Structure](repository-structure)
+- [Requirements](#requirements)
+- [Environment Variables](#environment-variables)
+- [Notes](#notes)
+- [WordPress Files](#wordpress-files)
+- [Running the Stack](#running-the-stack)
+- [Port Mapping](#port-mapping)
+- [CI Pipeline](#ci-pipeline)
+- [Future Improvements](#future-improvements)
 
 ## Overview
 This project provides a containerized LEMP stack consisting of:
