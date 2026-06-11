@@ -65,7 +65,22 @@ wordpress/
    ├── index.php
    └── wp-config-sample.php
 ```
-The ./wordpress directory is mounted into both the Nginx and PHP containers.
+The ./wordpress directory is mounted into both the Nginx and PHP containers.\
+After extracting WordPress files, create a `wp-config.php` file.
+
+You can use `wp-config-sample.php` as a template:
+
+```bash
+cp ./wordpress/wp-config-sample.php ./wordpress/wp-config.php
+```
+Then you should update the database settings to match the values defined in .env:
+```text
+define( 'DB_NAME', 'wordpress' );
+define( 'DB_USER', 'wordpress' );
+define( 'DB_PASSWORD', 'password' );
+define( 'DB_HOST', 'db' );
+```
+**DB_HOST must be set to db, which is the MariaDB service name defined in docker-compose.yml.**
 
 ## Running the Stack
 
