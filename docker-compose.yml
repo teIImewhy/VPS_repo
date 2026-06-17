@@ -3,10 +3,13 @@ services:
     image: prom/node-exporter:v1.11.1
     container_name: node-exporter
     restart: unless-stopped
-    ports:
-      - "9100:9100"
+    expose:
+      - "9100"
     command:
-      - '--path.rootfs=/host'
+      - '--path.rootfs=/rootfs'
+      - '--path.procfs=/host/proc'
+      - '--path.sysfs=/host/sys'
+      - '--collector.filesystem.mount-points-exclude=^/(sys|proc|dev|host)($$|/)'
     volumes:
       - /proc:/host/proc:ro
       - /sys:/host/sys:ro
