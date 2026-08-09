@@ -1,0 +1,11 @@
+global:
+  resolve_timeout: 5m
+
+route:
+  receiver: telegram
+
+receivers: 
+  - name: telegram
+    webhook_configs:
+      - url: http://telegram-bot:8080
+        send_resolved: true
